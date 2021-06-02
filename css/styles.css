@@ -1,0 +1,38 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "aut reg" " mes mes";
+}
+.registration {
+    grid-area: reg;
+    border: 1px dotted #000000;
+    padding: 25px;
+}
+.autoresation {
+    grid-area: aut;
+    border: 1px dotted #000000;
+    padding: 25px;
+}
+.message {
+    grid-area: mes;
+    border: 1px dotted #000000;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.title-big {
+    font-size: 30px;
+    font-weight: 900;
+    color: #000000;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
