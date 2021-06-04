@@ -1,28 +1,18 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    grid-template-areas: "aut reg" " mes mes";
+body {
+    padding: 0;
+    margin: 0;
 }
-.registration {
-    grid-area: reg;
-    border: 1px dotted #000000;
-    padding: 25px;
+p {
+    margin: 6px;
 }
-.autoresation {
-    grid-area: aut;
-    border: 1px dotted #000000;
-    padding: 25px;
-}
-.message {
-    grid-area: mes;
-    border: 1px dotted #000000;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-}
+
 .title-big {
     font-size: 30px;
+    font-weight: 900;
+    color: #000000;
+}
+.title-medium {
+    font-size: 24px;
     font-weight: 900;
     color: #000000;
 }
@@ -31,6 +21,58 @@
     justify-content: center;
     align-items: center;
 }
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.3fr 1fr;
+    grid-template-areas: "mes mes" " aut reg";
+}
+.registration {
+    grid-area: reg;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px dotted #000000;
+    padding: 25px;
+}
+.registration form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+}
+.repeat-pass {
+    width: 25%;
+}
+.autoresation {
+    grid-area: aut;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    border: 1px dotted #000000;
+    padding: 25px;
+}
+.autoresation form {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+
+}
+.message {
+    grid-area: mes;
+    border: 1px dotted #000000;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
 .img-404 {
     display: flex;
     justify-content: center;

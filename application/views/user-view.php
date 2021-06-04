@@ -1,18 +1,19 @@
 <div class="user-grid-container">
     <div class="your-date">
         <p>Вы авторизировались как:</p>
-        <?var_dump($data['FUser'])?>
-        <p>Имя: текст</p>
-        <p>Фамилия: текст</p>
-        <p>E-mail: text@mail.ru</p>
-        <p>Телефон: +7 999 999 99 99</p>
-        <p>Адрес: улица номер дома квартира</p>
+        <p>Имя: <?=$data['FUser'][0]['name']?></p>
+        <p>Фамилия: <?=$data['FUser'][0]['surname']?></p>
+        <p>E-mail: <?=$data['FUser'][0]['email']?></p>
+        <p>Телефон: <?=$data['FUser'][0]['phone']?></p>
+        <p>Адрес: <?=$data['FUser'][0]['address']?></p>
+
     </div>
 
     <div class="actions-your-date">
-    <a href="#">Изменить информацию о себе</a>
-        <a href="#">Изменить пароль</a>
-        <a href="#">Удалить свой аккаунт</a>
+    <a href="update">Изменить информацию о себе</a>
+        <a href="update_pass">Изменить пароль</a>
+        <a href="delete">Удалить свой аккаунт</a>
+        <a href="/">Выйти</a>
     </div>
 
     <div class="user-list">
