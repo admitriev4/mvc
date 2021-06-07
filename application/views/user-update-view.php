@@ -1,4 +1,21 @@
-<?php
 
-?>
-<p>Обновление данных пользователя</p>
+<? if(is_array($data)):?>
+<div class="update">
+<form method="post" action="/user/update/" >
+    <p class="title-medium">Обновление данных пользователя</p>
+    <p class="invisible"><input type="text" name="id" value="<?=$data['id']?>" readonly></p>
+    <p class="form-row"><span>Имя:</span> <input type="text" name="name"></p>
+    <p class="form-row"><span>Фамилия:</span> <input type="text" name="surname"></p>
+    <p class="form-row"><span>E-mail:</span> <input type="text" name="email"></p>
+    <p class="form-row"><span>Телефон:</span> <input type="text" name="phone"></p>
+    <p class="form-row"><span>Адрес:</span> <input type="text" name="address"></p>
+    <input type="submit" value="Изменить">
+</form>
+</div>
+<?else:?>
+<div>
+    <p class="title-medium">Обновление данных пользователя</p>
+    <p>Успешно выполнено!</p>
+    <p><a href="/user/">Назад</a> </p>
+</div>
+<?endif;?>

@@ -2,8 +2,12 @@ body {
     padding: 0;
     margin: 0;
 }
+
 p {
     margin: 6px;
+}
+.invisible {
+    display: none;
 }
 
 .title-big {
@@ -11,22 +15,26 @@ p {
     font-weight: 900;
     color: #000000;
 }
+
 .title-medium {
     font-size: 24px;
     font-weight: 900;
     color: #000000;
 }
+
 .center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 0.3fr 1fr;
     grid-template-areas: "mes mes" " aut reg";
 }
+
 .registration {
     grid-area: reg;
     display: flex;
@@ -35,6 +43,7 @@ p {
     border: 1px dotted #000000;
     padding: 25px;
 }
+
 .registration form {
     display: flex;
     flex-direction: column;
@@ -42,14 +51,17 @@ p {
     align-items: center;
 
 }
+
 .form-row {
     display: flex;
     justify-content: space-between;
     width: 85%;
 }
+
 .repeat-pass {
     width: 25%;
 }
+
 .autoresation {
     grid-area: aut;
     display: flex;
@@ -58,6 +70,7 @@ p {
     border: 1px dotted #000000;
     padding: 25px;
 }
+
 .autoresation form {
     display: flex;
     flex-direction: column;
@@ -65,6 +78,7 @@ p {
     align-items: center;
 
 }
+
 .message {
     grid-area: mes;
     border: 1px dotted #000000;
@@ -77,18 +91,21 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    }
+}
+
 .user-grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 250px 1fr;
     grid-template-areas: "data action" "list list";
 }
+
 .your-date {
     grid-area: data;
     border: 1px dotted #000000;
     padding: 25px;
 }
+
 .actions-your-date {
     grid-area: action;
     border: 1px dotted #000000;
@@ -98,29 +115,49 @@ p {
     justify-content: space-around;
     align-items: center;
 }
+
 .user-list {
     grid-area: list;
     border: 1px dotted #000000;
     padding: 25px;
 }
+
 .user-top-list {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
     border-bottom: 3px solid #000000;
     font-size: 22px;
 
 }
+
 .user-bottom-list {
     display: grid;
-    grid-template-columns: repeat(5,1fr);
+    grid-template-columns: repeat(6, 1fr);
     grid-template-rows: 1fr;
     border-bottom: 2px dotted #000000;
 
 }
-.user-top-list span, .user-bottom-list span{
+
+.user-top-list span, .user-bottom-list span {
     display: flex;
-  justify-content: center;
+    justify-content: center;
     align-items: center;
 
+}
+
+.update {
+    display: flex;
+    justify-content: center;
+}
+
+.update form {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.update p {
+    margin-top: 20px ;
 }

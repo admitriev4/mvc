@@ -7,10 +7,9 @@ class controllerUser extends Controller {
 
     function actionIndex()
     {
-        $phone = "+79096664422   +79999999999  +79998889898";
         $req = $_POST;
-        $data['users'] = $this->model->getData();
-        $data['FUser'] = $this->model->getFUser($req["phone"]);
+        $data['users'] = $this->model->getList('users');
+        $data['FUser'] = $this->model->getOne('users','phone', $req["phone"]);
         if(!empty($data['FUser'])) {
             $this->view->generate('user-view.php', 'template-view.php', $data);
         }
@@ -19,29 +18,54 @@ class controllerUser extends Controller {
             $this->view->generate('main-view.php', 'template-view.php', $req);
         }
     }
+    function actionAdd_show() {
+        /*$data['id'] = $_POST['id'];
+        $this->view->generate('user-update-view.php', 'template-view.php', $data);*/
+        /* убрать регистрацию на отдельную страницу или не убирать*/
+    }
     function actionAdd() {
         $req = $_POST;
-        $data["add_user"] = $this->model->addUser($req);
-        $data['users'] = $this->model->getData();
-        $data['FUser'] = $this->model->getFUser($req["phone"]);
-        if(!empty($data['FUser'])) {
-            $this->view->generate('user-view.php', 'template-view.php', $data);
-        }
-        else {
-            $req = "<p>Ошибка регистрации!!!</p><p>Введите коректные данные</p>";
-            $this->view->generate('main-view.php', 'template-view.php', $req);
-        }
+        $query = array('name'=> $req["name"],'surname'=> $req["surname"],'email'=> $req["email"],'phone'=> $req["phone"], 'address' => $req["address"], 'password' => $req["password"]);
+        $data["add_user"] = $this->model->add('users', $query);
+        $data['users'] = $this->model->getList('users');
+        $data['FUser'] = $this->model->getOne('users','phone', $req["phone"]);
 
 
+        $this->view->generate('user-view.php', 'template-view.php', $data);
+
+    }
+
+    function actionUpdate_show() {
+        $data['id'] = $_POST['id'];
+        $this->view->generate('user-update-view.php', 'template-view.php', $data);
     }
     function actionUpdate() {
-        $this->view->generate('user-update-view.php', 'template-view.php');
+        $req = $_POST;
+        $id = $_POST['id'];
+        $data = $this->model->update('users', $req, $id);
+        $this->view->generate('user-update-view.php', 'template-view.php', $data);
+    }
+
+    function actionUpdate_show_pass() {
+        $data['id'] = $_POST['id'];
+        $this->view->generate('user-update-pass-view.php', 'template-view.php', $data);
     }
     function actionUpdate_pass() {
-        $this->view->generate('user-update-pass-view.php', 'template-view.php');
+        $id = $_POST['id'];
+        /* дописать проверки и хеширование, проверить эту функцию*/
+        /*$req = $_POST;
+        $data = $this->model->update('users', $req, $id);*/
+        $this->view->generate('user-update-pass-view.php', 'template-view.php'/*, $data*/);
+    }
+
+    function actionDelete_show() {
+        $data['id'] = $_POST['id'];
+        $this->view->generate('user-delete-view.php', 'template-view.php', $data);
     }
     function actionDelete() {
-        $this->view->generate('user-delete-view.php', 'template-view.php');
+        $id = $_POST['id'];
+        $data = $this->model->delete('users', $id);
+        $this->view->generate('user-delete-view.php', 'template-view.php', $data);
     }
 }
 
