@@ -7,31 +7,26 @@ class controllerUser extends Controller {
 
     function actionIndex()
     {
-        $req = $_POST;
-        $data['users'] = $this->model->getList('users');
-        $data['FUser'] = $this->model->getOne('users','phone', $req["phone"]);
-        if(!empty($data['FUser'])) {
+        $data = $this->model->getData($_POST);
+        if(empty($data['request'])) {
             $this->view->generate('user-view.php', 'template-view.php', $data);
         }
         else {
-            $req = "<p>Ошибка авторизации!!!</p><p>Введите коректные данные</p>";
-            $this->view->generate('main-view.php', 'template-view.php', $req);
+            $this->view->generate('main-view.php', 'template-view.php', $data);
         }
     }
+
     function actionAdd_show() {
-        /*$data['id'] = $_POST['id'];
-        $this->view->generate('user-update-view.php', 'template-view.php', $data);*/
-        /* убрать регистрацию на отдельную страницу или не убирать*/
+        $this->view->generate('user-add-view.php', 'template-view.php');
     }
     function actionAdd() {
-        $req = $_POST;
-        $query = array('name'=> $req["name"],'surname'=> $req["surname"],'email'=> $req["email"],'phone'=> $req["phone"], 'address' => $req["address"], 'password' => $req["password"]);
-        $data["add_user"] = $this->model->add('users', $query);
-        $data['users'] = $this->model->getList('users');
-        $data['FUser'] = $this->model->getOne('users','phone', $req["phone"]);
-
-
-        $this->view->generate('user-view.php', 'template-view.php', $data);
+        $data = $this->model->addUser($_POST);
+        if(empty($data['request'])) {
+            $this->view->generate('user-view.php', 'template-view.php', $data);
+        }
+        else {
+            $this->view->generate('user-add-view.php', 'template-view.php', $data);
+        }
 
     }
 

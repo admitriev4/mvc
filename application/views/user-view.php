@@ -11,15 +11,15 @@
     </div>
 
     <div class="actions-your-date">
-        <form method="post" action="update_show" >
+        <form method="post" action="/user/update_show/" >
             <p class="invisible"><input type="text" name="id" value="<?=$data['FUser'][0]['id']?>" readonly></p>
             <input type="submit" value="Изменить информацию о себе">
         </form>
-        <form method="post" action="update_show_pass" >
+        <form method="post" action="/user/update_show_pass/" >
             <p class="invisible"><input type="text" name="id" value="<?=$data['FUser'][0]['id']?>" readonly></p>
             <input type="submit" value="Изменить пароль">
         </form>
-        <form method="post" action="delete_show" >
+        <form method="post" action="/user/delete_show/" >
             <p class="invisible"><input type="text" name="id" value="<?=$data['FUser'][0]['id']?>" readonly></p>
             <input type="submit" value="Удалить свой аккаунт">
         </form>
