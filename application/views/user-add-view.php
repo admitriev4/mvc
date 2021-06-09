@@ -12,6 +12,6 @@
         <input type="submit" value="Регистрация">
     </form>
 </div>
-<div class="request">
+<div class="show-request red">
     <p><?=$data["request"];?></p>
 </div>

@@ -13,7 +13,7 @@
     <div class="registration">
         <a href="/user/add_show/">Зарегистрироваться</a>
     </div>
-    <div class="show-request">
-        <p><?=$data['request'];?></p>
+    <div class="show-request red">
+        <?=$data['request'];?>
     </div>
 </div>

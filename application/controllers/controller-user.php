@@ -35,9 +35,7 @@ class controllerUser extends Controller {
         $this->view->generate('user-update-view.php', 'template-view.php', $data);
     }
     function actionUpdate() {
-        $req = $_POST;
-        $id = $_POST['id'];
-        $data = $this->model->update('users', $req, $id);
+        $data = $this->model->updateUser($_POST);
         $this->view->generate('user-update-view.php', 'template-view.php', $data);
     }
 
@@ -46,11 +44,8 @@ class controllerUser extends Controller {
         $this->view->generate('user-update-pass-view.php', 'template-view.php', $data);
     }
     function actionUpdate_pass() {
-        $id = $_POST['id'];
-        /* дописать проверки и хеширование, проверить эту функцию*/
-        /*$req = $_POST;
-        $data = $this->model->update('users', $req, $id);*/
-        $this->view->generate('user-update-pass-view.php', 'template-view.php'/*, $data*/);
+        $data = $this->model->updatePassUser($_POST);
+        $this->view->generate('user-update-pass-view.php', 'template-view.php', $data);
     }
 
     function actionDelete_show() {
@@ -58,8 +53,7 @@ class controllerUser extends Controller {
         $this->view->generate('user-delete-view.php', 'template-view.php', $data);
     }
     function actionDelete() {
-        $id = $_POST['id'];
-        $data = $this->model->delete('users', $id);
+        $data = $this->model->delete($_POST['id']);
         $this->view->generate('user-delete-view.php', 'template-view.php', $data);
     }
 }

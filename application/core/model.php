@@ -1,15 +1,17 @@
 <?php
 class Model {
-    public function getList($table)
+
+    /* изменить возвращаемые значения на объекты*/
+    public function getList()
     {
         $Orm = Orm::Instance();
-        $result = $Orm->Select($table)->execute();
+        $result = $Orm->Select(static::$table)->execute();
         return $result;
     }
     public function getOne($field, $phone) {
         $Orm = Orm::Instance();
         $result = $Orm->Select(static::$table)->where(["$field" => "$phone"])->execute();
-        return $result;
+        return $result[0];
     }
     public function add( $arrQuery) {
         $Orm = Orm::Instance();
@@ -28,6 +30,9 @@ class Model {
     }
     public function validation() {
         /* перенести валидацию сюда  и сделать ее нормальной */
+    }
+    public function load() {
+        /* реализовать запись в поля объекта массива данных*/
     }
 
 }

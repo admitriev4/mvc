@@ -2,9 +2,14 @@ body {
     padding: 0;
     margin: 0;
 }
-
+.btn {
+ margin: 15px;
+}
 p {
     margin: 6px;
+}
+.red{
+    color: red;
 }
 .invisible {
     display: none;
@@ -31,8 +36,8 @@ p {
 .grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 0.3fr 1fr;
-    grid-template-areas: "mes mes" " aut reg";
+    grid-template-rows: 0.3fr 1fr 0.5fr;
+    grid-template-areas: "mes mes" " aut reg" "req req";
 }
 
 .registration {
@@ -160,4 +165,68 @@ p {
 }
 .update p {
     margin-top: 20px ;
+}
+.update-pass {
+    display: flex;
+    justify-content: center;
+}
+
+.update-pass form {
+    width: 22%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.update-pass p {
+    text-align: center;
+    margin-top: 20px ;
+}
+.delete {
+    display: flex;
+    justify-content: center;
+}
+.delete .title-medium{
+   margin-top: 50% ;
+}
+.delete form {
+    width: 30%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.delete p {
+    margin-top: 15px ;
+    margin-bottom: 15px ;
+}
+.update-request {
+    display: flex;
+    justify-content: center;
+}
+.update-request div{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.delete-request {
+    display: flex;
+    justify-content: center;
+}
+.delete-request div{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.show-request {
+    grid-area: req;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

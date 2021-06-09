@@ -1,26 +1,27 @@
+<?/*var_dump($data);*/?>
 <div class="user-grid-container">
     <div class="your-date">
         <p>Вы авторизировались как:</p>
-        <p>ID: <?=$data['FUser'][0]['id']?></p>
-        <p>Имя: <?=$data['FUser'][0]['name']?></p>
-        <p>Фамилия: <?=$data['FUser'][0]['surname']?></p>
-        <p>E-mail: <?=$data['FUser'][0]['email']?></p>
-        <p>Телефон: <?=$data['FUser'][0]['phone']?></p>
-        <p>Адрес: <?=$data['FUser'][0]['address']?></p>
+        <p>ID: <?=$data['FUser']['id']?></p>
+        <p>Имя: <?=$data['FUser']['name']?></p>
+        <p>Фамилия: <?=$data['FUser']['surname']?></p>
+        <p>E-mail: <?=$data['FUser']['email']?></p>
+        <p>Телефон: <?=$data['FUser']['phone']?></p>
+        <p>Адрес: <?=$data['FUser']['address']?></p>
 
     </div>
 
     <div class="actions-your-date">
         <form method="post" action="/user/update_show/" >
-            <p class="invisible"><input type="text" name="id" value="<?=$data['FUser'][0]['id']?>" readonly></p>
+            <p class="invisible"><input type="text" name="id" value="<?=$data['FUser']['id']?>" readonly></p>
             <input type="submit" value="Изменить информацию о себе">
         </form>
         <form method="post" action="/user/update_show_pass/" >
-            <p class="invisible"><input type="text" name="id" value="<?=$data['FUser'][0]['id']?>" readonly></p>
+            <p class="invisible"><input type="text" name="id" value="<?=$data['FUser']['id']?>" readonly></p>
             <input type="submit" value="Изменить пароль">
         </form>
         <form method="post" action="/user/delete_show/" >
-            <p class="invisible"><input type="text" name="id" value="<?=$data['FUser'][0]['id']?>" readonly></p>
+            <p class="invisible"><input type="text" name="id" value="<?=$data['FUser']['id']?>" readonly></p>
             <input type="submit" value="Удалить свой аккаунт">
         </form>
         <a href="/">Выйти</a>
