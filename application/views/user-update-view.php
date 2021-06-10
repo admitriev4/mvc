@@ -1,8 +1,9 @@
-<? if(is_array($data)):?>
+<? var_dump($data);?>
+<? if($data == null || isset($data['request'])):?>
 <div class="update">
 <form method="post" action="/user/update/" >
     <p class="title-medium">Обновление данных пользователя</p>
-    <p class="invisible"><input type="text" name="id" value="<?=$data['id']?>" readonly></p>
+    <p class=""><input type="text" name="id" value="<?=$_SESSION['fUser']['id']?>" readonly></p>
     <p class="form-row"><span>Имя:</span> <input type="text" name="name"></p>
     <p class="form-row"><span>Фамилия:</span> <input type="text" name="surname"></p>
     <p class="form-row"><span>E-mail:</span> <input type="text" name="email"></p>

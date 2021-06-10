@@ -57,21 +57,23 @@ class modelUser extends Model
     {
         /* Добавить нормальную валидацию*/
         if (!empty($req['phone']) && !empty($req['password'])) {
-            $data['FUser'] = $this->getOne('phone', $req["phone"]);
-            if (!empty($data['FUser'])) {
-
-                if (password_verify ($req['password'], $data["FUser"]["password"])) {
-                    $data['users'] = $this->getList(self::$table);
+            if ($fUser = $this->getOne('phone', $req["phone"])) {
+                if (password_verify ($req['password'], $fUser->password)) {
+                    /*авторизация*/
+                    /*запись fUser в сессию*/
+                    $auth = new Auth();
+                    $auth->logIn($fUser);
+                    /*$_SESSION['fUser']['id'] = $fUser->id;*/
                 } else {
-                    $data["request"] = "<p>Ошибка авторизации!!!</p><p>Неверный пароль!!!</p>";
+                    $this->request = "<p>Ошибка авторизации!!!</p><p>Неверный пароль!!!</p>";
                 }
             } else {
-                $data["request"] = "<p>Ошибка авторизации!!!</p><p>Такого пользователя не существует!!!</p>";
+                $this->request = "<p>Ошибка авторизации!!!</p><p>Такого пользователя не существует!!!</p>";
             }
         } else {
-            $data["request"] = "<p>Ошибка авторизации!!!</p><p>Заполните форму!!!</p>";
+            $this->request = "<p>Ошибка авторизации!!!</p><p>Заполните форму!!!</p>";
         }
-        return $data;
+        return $this;
     }
 
     public function addUser($req)

@@ -14,6 +14,6 @@
         <a href="/user/add_show/">Зарегистрироваться</a>
     </div>
     <div class="show-request red">
-        <?=$data['request'];?>
+        <?=$data;?>
     </div>
 </div>

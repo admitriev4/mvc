@@ -7,12 +7,14 @@ class controllerUser extends Controller {
 
     function actionIndex()
     {
-        $data = $this->model->getData($_POST);
-        if(empty($data['request'])) {
+        $user = $this->model->getData($_POST);
+
+        if(empty($data->request)) {
+            $data = $this->model->getList();
             $this->view->generate('user-view.php', 'template-view.php', $data);
         }
         else {
-            $this->view->generate('main-view.php', 'template-view.php', $data);
+            $this->view->generate('main-view.php', 'template-view.php', $user->request);
         }
     }
 
@@ -31,8 +33,7 @@ class controllerUser extends Controller {
     }
 
     function actionUpdate_show() {
-        $data['id'] = $_POST['id'];
-        $this->view->generate('user-update-view.php', 'template-view.php', $data);
+        $this->view->generate('user-update-view.php', 'template-view.php');
     }
     function actionUpdate() {
         $data = $this->model->updateUser($_POST);
