@@ -1,7 +1,6 @@
 <?php
 class Auth {
     public function logIn($user) {
-        /* добавить проверку  и добавить схранение полей объекта*/
         foreach ($user as $key => $value) {
             $arr[$key] = $value;
         }
@@ -17,7 +16,6 @@ class Auth {
         }
     }
     public function logOut() {
-
         unset($_SESSION['fUser']);
     }
 }

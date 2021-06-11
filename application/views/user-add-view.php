@@ -9,9 +9,12 @@
         <p class="title-small">Длина пароля не менее 8 символов, должны использоваться буквы обоих регистров, знаки препинания и цифры.</p>
         <p class="form-row"><span>Пароль:</span> <input type="password" name="password"></p>
         <p class="form-row"><span class="repeat-pass">Повторите пароль:</span> <input type="password" name="repeat_password"></p>
-        <input type="submit" value="Регистрация">
+        <input type="submit" value="Регистрация" class="btn">
+        <a href="/">Назад</a>
     </form>
 </div>
+<?if (isset($data->request)):?>
 <div class="show-request red">
-    <p><?=$data["request"];?></p>
+    <p><?=$data->request;?></p>
 </div>
+<?endif;?>

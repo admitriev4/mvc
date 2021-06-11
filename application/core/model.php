@@ -27,23 +27,81 @@ public $request;
         }
 
     }
-    public function add( $arrQuery) {
+    public function add($arrQuery) {
         $Orm = Orm::Instance();
-        $result = $Orm->Insert(static::$table)->values($arrQuery)->execute();
-        return $result;
+        if ($Orm->Insert(static::$table)->values($arrQuery)->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public function update($req, $id) {
         $Orm = Orm::Instance();
-        $result = $Orm->Update(static::$table)->values($req)->where(['id' => "$id"])->execute();
-        return $result;
+        if ($Orm->Update(static::$table)->values($req)->where(['id' => "$id"])->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
     public function delete($id) {
         $Orm = Orm::Instance();
-        $result = $Orm->Delete(static::$table)->where(['id'=>"$id"])->execute();
-        return $result;
+        if ($Orm->Delete(static::$table)->where(['id'=>"$id"])->execute()) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
     public function validation() {
         /* перенести валидацию сюда  и сделать ее нормальной */
+
+        /*public function validationPhone($phone)
+        {
+            if (preg_match('/^\+[0-9]/', $phone) && strlen($phone) == 12) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function validationEmail($email)
+        {
+            if (preg_match('/^.+@.+/', $email)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function validationPassword($password)
+        {
+            if (strlen($password) >= 8) {
+                $upFlag = false;
+                $lowFlag = false;
+                $digitFlag = false;
+                $punctFlag = false;
+                $arr_str = str_split($password, 1);
+                foreach ($arr_str as $simbol) {
+                    if (ctype_upper($simbol)) $upFlag = true;
+                    if (ctype_lower($simbol)) $lowFlag = true;
+                    if (ctype_digit($simbol)) $digitFlag = true;
+                    if (ctype_punct($simbol)) $punctFlag = true;
+                }
+                if ($upFlag == true && $lowFlag == true && $digitFlag == true && $punctFlag == true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }*/
+
+
+
     }
     public function load($arr) {
         foreach ($arr as $property => $value) {

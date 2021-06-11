@@ -8,8 +8,7 @@ class controllerUser extends Controller {
     function actionIndex()
     {
         $user = $this->model->getData($_POST);
-
-        if(empty($data->request)) {
+        if(empty($user->request) || !empty($_SESSION['fUser'])) {
             $data = $this->model->getList();
             $this->view->generate('user-view.php', 'template-view.php', $data);
         }
@@ -22,12 +21,13 @@ class controllerUser extends Controller {
         $this->view->generate('user-add-view.php', 'template-view.php');
     }
     function actionAdd() {
-        $data = $this->model->addUser($_POST);
-        if(empty($data['request'])) {
+        $user = $this->model->addUser($_POST);
+        if(empty($user->request)) {
+            $data = $this->model->getList();
             $this->view->generate('user-view.php', 'template-view.php', $data);
         }
         else {
-            $this->view->generate('user-add-view.php', 'template-view.php', $data);
+            $this->view->generate('user-add-view.php', 'template-view.php', $user);
         }
 
     }
@@ -41,8 +41,7 @@ class controllerUser extends Controller {
     }
 
     function actionUpdate_show_pass() {
-        $data['id'] = $_POST['id'];
-        $this->view->generate('user-update-pass-view.php', 'template-view.php', $data);
+        $this->view->generate('user-update-pass-view.php', 'template-view.php');
     }
     function actionUpdate_pass() {
         $data = $this->model->updatePassUser($_POST);
@@ -50,11 +49,12 @@ class controllerUser extends Controller {
     }
 
     function actionDelete_show() {
-        $data['id'] = $_POST['id'];
-        $this->view->generate('user-delete-view.php', 'template-view.php', $data);
+        $this->view->generate('user-delete-view.php', 'template-view.php');
     }
     function actionDelete() {
-        $data = $this->model->delete($_POST['id']);
+        $data = $this->model->delete($_SESSION['fUser']['id']);
+        $auth = new Auth();
+        $auth->logOut();
         $this->view->generate('user-delete-view.php', 'template-view.php', $data);
     }
 }
