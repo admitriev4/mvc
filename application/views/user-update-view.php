@@ -28,9 +28,11 @@
 </div>
     <?if (isset($data->request)):?>
         <div class="show-request red">
-            <div>
-                <?=$data->request?>
-            </div>
+            <? if(is_array($data->request)):?>
+                <?foreach ($data->request as $value):?>
+                    <p><?=$value;?></p>
+                <?endforeach;?>
+            <?endif;?>
         </div>
     <?endif;?>
 <?else:?>

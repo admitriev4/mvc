@@ -55,53 +55,24 @@ public $request;
             return false;
         }
     }
-    public function validation() {
-        /* перенести валидацию сюда  и сделать ее нормальной */
-
-        /*public function validationPhone($phone)
-        {
-            if (preg_match('/^\+[0-9]/', $phone) && strlen($phone) == 12) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        public function validationEmail($email)
-        {
-            if (preg_match('/^.+@.+/', $email)) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        public function validationPassword($password)
-        {
-            if (strlen($password) >= 8) {
-                $upFlag = false;
-                $lowFlag = false;
-                $digitFlag = false;
-                $punctFlag = false;
-                $arr_str = str_split($password, 1);
-                foreach ($arr_str as $simbol) {
-                    if (ctype_upper($simbol)) $upFlag = true;
-                    if (ctype_lower($simbol)) $lowFlag = true;
-                    if (ctype_digit($simbol)) $digitFlag = true;
-                    if (ctype_punct($simbol)) $punctFlag = true;
+    public function validation($req) {
+        foreach ($req as $key => $value) {
+            if(!empty($value)) {
+                if(array_key_exists($key, static::$rules)) {
+                    if (!preg_match(static::$rules[$key], $value)) {
+                        $this->request[] = static::$err_req[$key];
+                    }
                 }
-                if ($upFlag == true && $lowFlag == true && $digitFlag == true && $punctFlag == true) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
             }
-        }*/
+            else {
+                if(array_key_exists($key, static::$err_req)) {
+                    $this->request[] = static::$err_req[$key];
 
+                }
+            }
 
-
+        }
+        return $this;
     }
     public function load($arr) {
         foreach ($arr as $property => $value) {

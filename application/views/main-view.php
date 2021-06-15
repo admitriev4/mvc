@@ -5,15 +5,21 @@
     <div class="autoresation">
         <form method="post" action="/user/">
         <p class="title-medium">Войти</p>
-       <p><span class="form-row">Телефон:</span></span> <input type="text" name="phone"></p>
-        <p><span class="form-row">Пароль:</span> <input type="pasword" name="password"></p>
+            <p><span class="form-row">Телефон:</span> <input type="text" name="phone" placeholder="+79999999999"></p>
+            <p><span class="form-row">Пароль:</span> <input type="pasword" name="password"></p>
             <input type="submit" value="Войти">
         </form>
     </div>
     <div class="registration">
         <a href="/user/add_show/">Зарегистрироваться</a>
     </div>
-    <div class="show-request red">
-        <?=$data;?>
-    </div>
+    <?if (isset($data)):?>
+        <div class="show-request red">
+            <? if(is_array($data)):?>
+                <?foreach ($data as $value):?>
+                    <p><?=$value;?></p>
+                <?endforeach;?>
+            <?endif;?>
+        </div>
+    <?endif;?>
 </div>
