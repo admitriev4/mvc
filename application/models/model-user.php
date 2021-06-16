@@ -23,32 +23,30 @@ class modelUser extends Model
         'email' => "Заполните E-mail согласно правилам",
         'phone' => "Заполните телефон согласно правилам",
         'address' => "Заполните адрес",
-        'password' => "Заполните пароль согласно правилам"
+        'password' => "Заполните пароль согласно правилам",
+        'repeat_password' => "Повторите пароль",
+        'old_password' => "Заполните старый пароль"
     );
 
     public function getData($req)
     {
             $this->validation($req);
             if (empty($this->request)) {
-                if(!isset($req["phone"]) && !isset($_SESSION['fUser'])) {
-                    $req["phone"] = $_SESSION['fUser']["phone"];
-                    if ($fUser = $this->getOne('phone', $req["phone"])) {
-                        if (password_verify($req['password'], $fUser->password)) {
-                            $auth = new Auth();
-                            $auth->logIn($fUser);
-                        } else {
-                            $this->request[] = "Неверный пароль!!!";
-                        }
+                if (empty($_SESSION['fUser'])) {
+                if ($fUser = $this->getOne('phone', $req['phone'])) {
+                    if (password_verify($req['password'], $fUser->password)) {
+                        $auth = new Auth();
+                        $auth->logIn($fUser);
                     } else {
-                        $this->request[] = "Такого пользователя не существует!!!";
+                        $this->request[] = "Неверный пароль!!!";
                     }
-                }
-                else {
-                    $this->request[] = "Ошибка авторизации!!!";
+                } else {
+                    $this->request[] = "Такого пользователя не существует!!!";
                 }
             }
-            /*var_dump($this);*/
-        return $this;
+            }
+
+            return $this;
     }
 
     public function addUser($req)
@@ -88,23 +86,20 @@ class modelUser extends Model
 
     function updatePassUser($req)
     {
-        /*sS1_sS1_ валидный пароль*/
-        /* добавить нормальную валидацию*/
-        if (!empty($req['old_password']) && !empty($req['password']) && !empty($req['repeat_password'])) {
-            if (password_verify($req['old_password'], $_SESSION['fUser']['password'])) {
-                if ($req['password'] == $req['repeat_password']) {
-                    $field['password'] = password_hash($req["password"], PASSWORD_DEFAULT);
-                    $this->update($field, $_SESSION['fUser']['id']);
-                } else {
-                    $this->request = "<p>Пароли не совпадают!!!</p>";
-                }
-
+        $this->validation($req);
+        if (empty($this->request)) {
+        if (password_verify($req['old_password'], $_SESSION['fUser']['password'])) {
+            if ($req['password'] == $req['repeat_password']) {
+                $field['password'] = password_hash($req["password"], PASSWORD_DEFAULT);
+                $this->update($field, $_SESSION['fUser']['id']);
             } else {
-                $this->request = "<p>Старый пароль не верен!!!</p>";
+                $this->request[] = "<p>Пароли не совпадают!!!</p>";
             }
+
         } else {
-            $this->request = "<p>Заполните форму!!!</p>";
+            $this->request[] = "<p>Старый пароль не верен!!!</p>";
         }
+    }
         return $this;
     }
 
