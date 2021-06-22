@@ -1,7 +1,6 @@
 <?php
 class Model {
 public $request;
-    /* изменить возвращаемые значения на объекты*/
     public function getList()
     {
         $Orm = Orm::Instance();
@@ -14,6 +13,26 @@ public $request;
 
         return $arrObj;
     }
+    public function getCountPage() {
+        $Orm = Orm::Instance();
+        $result = $Orm->Count(static::$table)->execute();
+        return ceil($result[0]['COUNT(*)']/static::$countToPage);
+    }
+
+    public function getPaginateList($page=1) {
+        $limitFrom = ($page - 1)*static::$countToPage;
+        if($limitFrom == 1) $limitFrom = 0;
+        $limitTo = $page*static::$countToPage;
+        $Orm = Orm::Instance();
+        $result = $Orm->Select(static::$table)->limit($limitFrom, $limitTo)->execute();
+        foreach ($result as $user) {
+            $obj = new static();
+            $obj->load($user);
+            $arrObj[] = $obj;
+        }
+        return $arrObj;
+    }
+
     public function getOne($field, $value) {
         $Orm = Orm::Instance();
         $obj = new static();

@@ -6,6 +6,7 @@
     <title>MVC, ООП, AJAX #Дмитриев</title>
 </head>
 <body>
+<?/*var_dump($contentView);*/?>
 <?php include 'application/views/'.$contentView; ?>
 </body>
 <script src="/js/script.js" type="text/javascript"></script>

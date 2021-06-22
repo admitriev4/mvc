@@ -10,6 +10,7 @@ class modelUser extends Model
     public $address;
     public $password;
     static $table = 'users';
+    static $countToPage = 10;
 
     public static $rules = array(
         'email' => "/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/",

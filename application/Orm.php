@@ -35,6 +35,11 @@ class Orm {
         $this->type = 'select';
         return $this;
     }
+    public function Count($table) {
+        $this->sql_query = "SELECT COUNT(*) FROM `".$table."`";
+        $this->type = 'select';
+        return $this;
+    }
 
     public function where ($where, $op = '=') {
         $vals = array();
@@ -92,6 +97,16 @@ class Orm {
         return $this;
     }
 
+    public function limit($from, $to = NULL){
+        $res_str = "";
+        if($to == NULL){
+            $res_str = $from;
+        }else{
+            $res_str = $from . "," . $to;
+        }
+        $this->sql_query .= " LIMIT " . $res_str; // Модифицируем строку запроса
+        return $this;
+    }
 
     public function execute() {
         $q = $this->pdo->prepare($this->sql_query);

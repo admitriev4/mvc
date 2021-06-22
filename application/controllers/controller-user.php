@@ -13,11 +13,21 @@ class controllerUser extends Controller
         if (!empty($_POST) || !empty($_SESSION)) {
             $user = $this->model->getData($_POST);
             if (empty($user->request) || !empty($_SESSION['fUser'])) {
-                $data = $this->model->getList();
+                $data['users'] = $this->model->getPaginateList();
+                $data['count_page'] = $this->model->getCountPage();
                 $this->view->generate('user-view.php', 'template-view.php', $data);
             } else {
                 $this->view->generate('main-view.php', 'template-view.php', $user->request);
             }
+        } else {
+            $this->view->generate('main-view.php', 'template-view.php');
+        }
+    }
+    function actionPaginate($page) {
+        if(!empty($_SESSION)) {
+            $data['users'] = $this->model->getPaginateList($page);
+            $data['count_page'] = $this->model->getCountPage();
+            $this->view->generate('user-view.php', 'template-view.php', $data);
         } else {
             $this->view->generate('main-view.php', 'template-view.php');
         }

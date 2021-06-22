@@ -1,5 +1,5 @@
 <div class="registration">
-    <form method="post" action="/user/add/" >
+    <form method="post" action="" id="add">
         <p class="title-medium">Регистрация</p>
         <p class="form-row"><span>Имя:</span> <input type="text" name="name"></p>
         <p class="form-row"><span>Фамилия:</span> <input type="text" name="surname"></p>

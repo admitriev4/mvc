@@ -15,7 +15,11 @@
         <a href="/user/delete_show/">Удалить свой аккаунт</a>
         <a href="/">Выйти</a>
     </div>
-
+    <div class="paginate">
+        <?for ($i = 1; $i <= $data['count_page']; $i++):?>
+            <a href="/user/<?=$i?>/"><?=$i?> </a>
+        <?endfor;?>
+    </div>
     <div class="user-list">
         <p class="user-top-list">
             <span>ID</span>
@@ -25,7 +29,7 @@
             <span>Телефон</span>
             <span>Адрес</span>
         </p>
-        <? foreach ($data as $user):?>
+        <? foreach ($data['users'] as $user):?>
         <p class="user-bottom-list">
             <span><?=$user->id?></span>
             <span><?=$user->name?></span>
@@ -36,4 +40,5 @@
         </p>
         <?endforeach;?>
     </div>
+
 </div>

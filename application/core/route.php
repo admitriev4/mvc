@@ -12,10 +12,14 @@ class Route {
         if(!empty($routes[2])) {
             $actionName = $routes[2];
         }
-
         $modelName = "model-".$controllerName;
         $controllerFileName = "controller-".$controllerName;
-        $actionName = "action".ucfirst(strtolower($actionName));
+        if(!ctype_digit($actionName)) {
+            $actionName = "action".ucfirst(strtolower($actionName));
+        } else {
+            $actionName = intval($actionName);
+        }
+
 
 
 
@@ -42,9 +46,21 @@ class Route {
         $controllerName = "controller".ucfirst(strtolower($controllerName));
         $controller = new $controllerName;
 
+
+
+
+
          if(method_exists($controller, $actionName)) {
              $controller->$actionName();
 
+         }elseif (is_int($actionName)) {
+             $allpage = $controller->model->getCountPage();
+             if($actionName <= $allpage && method_exists($controller, "actionPaginate")) {
+                 $controller->actionPaginate($actionName, $allpage);
+             }
+             else {
+                 Route::ErrorPage404();
+             }
          }
          else {
              Route::ErrorPage404();

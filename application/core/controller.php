@@ -10,4 +10,7 @@ class Controller {
     function actionIndex() {
 
     }
+    function actionPaginate($page) {
+
+    }
 }
