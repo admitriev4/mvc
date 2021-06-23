@@ -7,6 +7,7 @@
 </head>
 <body>
 <?/*var_dump($contentView);*/?>
+#CONTENT#
 <?php include 'application/views/'.$contentView; ?>
 </body>
 <script src="/js/script.js" type="text/javascript"></script>

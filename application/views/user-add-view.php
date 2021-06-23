@@ -13,12 +13,5 @@
         <a href="/">Назад</a>
     </form>
 </div>
-<?if (isset($data->request)):?>
 <div class="show-request red">
-    <? if(is_array($data->request)):?>
-    <?foreach ($data->request as $value):?>
-    <p><?=$value;?></p>
-        <?endforeach;?>
-    <?endif;?>
 </div>
-<?endif;?>

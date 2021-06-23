@@ -80,16 +80,15 @@ public $request;
                 if(array_key_exists($key, static::$rules)) {
                     if (!preg_match(static::$rules[$key], $value)) {
                         $this->request[] = static::$err_req[$key];
+
                     }
                 }
             }
             else {
                 if(array_key_exists($key, static::$err_req)) {
                     $this->request[] = static::$err_req[$key];
-
                 }
             }
-
         }
         return $this;
     }

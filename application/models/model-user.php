@@ -19,14 +19,14 @@ class modelUser extends Model
     );
 
     public static $err_req = array(
-        'name' => "Заполните  имя",
-        'surname' => "Заполните  фамилию",
-        'email' => "Заполните E-mail согласно правилам",
-        'phone' => "Заполните телефон согласно правилам",
-        'address' => "Заполните адрес",
-        'password' => "Заполните пароль согласно правилам",
-        'repeat_password' => "Повторите пароль",
-        'old_password' => "Заполните старый пароль"
+        'name' => "<p>Заполните  имя</p>",
+        'surname' => "<p>Заполните  фамилию</p>",
+        'email' => "<p>Заполните E-mail согласно правилам</p>",
+        'phone' => "<p>Заполните телефон согласно правилам</p>",
+        'address' => "<p>Заполните адрес</p>",
+        'password' => "<p>Заполните пароль согласно правилам</p>",
+        'repeat_password' => "<p>Повторите пароль</p>",
+        'old_password' => "<p>Заполните старый пароль</p>"
     );
 
     public function getData($req)
@@ -39,10 +39,10 @@ class modelUser extends Model
                         $auth = new Auth();
                         $auth->logIn($fUser);
                     } else {
-                        $this->request[] = "Неверный пароль!!!";
+                        $this->request[] = "<p>Неверный пароль</p>";
                     }
                 } else {
-                    $this->request[] = "Такого пользователя не существует!!!";
+                    $this->request[] = "<p>Такого пользователя не существует</p>";
                 }
             }
             }
@@ -54,10 +54,10 @@ class modelUser extends Model
     {
         $this->validation($req);
         if ($fUser = $this->getOne('phone', $req["phone"])) {
-            $this->request[] = "Такой пользователь уже существует!!!";
+            $this->request[] = "<p>Такой пользователь уже существует</p>";
         }
         if ($req['password'] != $req['repeat_password']) {
-            $this->request[] = "Пароли не совпадают!!!";
+            $this->request[] = "<p>Пароли не совпадают</p>";
         }
         if(empty($this->request)) {
             $passwordHash = password_hash($req["password"], PASSWORD_DEFAULT);
@@ -66,7 +66,7 @@ class modelUser extends Model
             $this->load($query);
             $auth = new Auth();
             $auth->logIn($this);
-            $this->add($query);
+            /*$this->add($query);*/
         }
         return $this;
     }
@@ -94,11 +94,11 @@ class modelUser extends Model
                 $field['password'] = password_hash($req["password"], PASSWORD_DEFAULT);
                 $this->update($field, $_SESSION['fUser']['id']);
             } else {
-                $this->request[] = "<p>Пароли не совпадают!!!</p>";
+                $this->request[] = "<p>Пароли не совпадают</p>";
             }
 
         } else {
-            $this->request[] = "<p>Старый пароль не верен!!!</p>";
+            $this->request[] = "<p>Старый пароль не верен</p>";
         }
     }
         return $this;

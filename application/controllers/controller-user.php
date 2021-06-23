@@ -43,10 +43,11 @@ class controllerUser extends Controller
         if (!empty($_POST)) {
             $user = $this->model->addUser($_POST);
             if (empty($user->request)) {
-                $data = $this->model->getList();
-                $this->view->generate('user-view.php', 'template-view.php', $data);
+                /*$data = $this->model->getList();*/
+                header("Location: /users/",TRUE,301);
             } else {
-                $this->view->generate('user-add-view.php', 'template-view.php', $user);
+                 echo json_encode($user->request,  JSON_UNESCAPED_UNICODE);
+               /* $this->view->generate('user-add-view.php', 'template-view.php', $user);*/
             }
         } else {
             $this->view->generate('main-view.php', 'template-view.php');
@@ -67,8 +68,10 @@ class controllerUser extends Controller
     {
         if (!empty($_POST)) {
         $data = $this->model->updateUser($_POST);
-        $this->view->generate('user-update-view.php', 'template-view.php', $data);
+            echo json_encode($data->request,  JSON_UNESCAPED_UNICODE);
+        /*$this->view->generate('user-update-view.php', 'template-view.php', $data);*/
         } else {
+            $this->view->tamplate = 'empty';
             $this->view->generate('main-view.php', 'template-view.php');
         }
     }
