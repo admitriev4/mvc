@@ -3,7 +3,7 @@
         <p class="title-big">Войдите или Зарегистрируйтесь</p>
     </div>
     <div class="autoresation">
-        <form method="post" action="/user/">
+        <form method="post" action="/user/" data-type="redirect" id="auth">
         <p class="title-medium">Войти</p>
             <p><span class="form-row">Телефон:</span> <input type="text" name="phone" placeholder="+79999999999"></p>
             <p><span class="form-row">Пароль:</span> <input type="pasword" name="password"></p>

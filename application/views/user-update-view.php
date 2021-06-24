@@ -12,17 +12,15 @@
         <a href="/user/">Назад</a>
     </div>
 <div class="update">
-<form method="post" action="" id="update">
-    <p class="title-medium">Обновление данных пользователя</p>
-    <p class="form-row"><span>Имя:</span> <input type="text" name="name"></p>
-    <p class="form-row"><span>Фамилия:</span> <input type="text" name="surname"></p>
-    <p class="form-row"><span>E-mail:</span> <input type="text" name="email"></p>
-    <p class="form-row"><span>Телефон:</span> <input type="text" name="phone"></p>
-    <p class="form-row"><span>Адрес:</span> <input type="text" name="address"></p>
+<form method="post" action="/user/update/" data-type="noRedirect" >
+    <p class="title-medium center">Обновление данных пользователя</p>
+    <p class="form-row"><span>Имя:</span><input type="text" name="name"><span class="request red" id="name"></span></p>
+    <p class="form-row"><span>Фамилия:</span><input type="text" name="surname"> <span class="request red" id="surname"></span></p>
+    <p class="form-row"><span>E-mail:</span><input type="text" name="email"><span class="request red" id="email"></span></p>
+    <p class="form-row"><span>Телефон:</span><input type="text" name="phone"><span class="request red" id="phone"></span></p>
+    <p class="form-row"><span>Адрес:</span><input type="text" name="address"><span class="request red" id="address"></span></p>
     <input type="submit" value="Изменить" class="btn">
 </form>
-</div>
-<div class="show-request red">
 </div>
 </div>
 <div class="message-request"></div>
