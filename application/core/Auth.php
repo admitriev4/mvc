@@ -7,8 +7,8 @@ class Auth {
         $_SESSION['fUser'] = $arr;
 
     }
-    public function check($key) {
-        if(isset($_SESSION[$key])) {
+    public function check() {
+        if(!empty($_SESSION)) {
             return true;
         }
         else {

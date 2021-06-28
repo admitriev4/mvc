@@ -1,5 +1,5 @@
 <?php
-include_once ("dbconfig.php");
+include_once("dbconfig.php");
 class Orm {
     protected $pdo;
     protected $sql_query;
