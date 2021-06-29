@@ -13,5 +13,4 @@
         <a href="/">Назад</a>
     </form>
 </div>
-<div class="show-request red">
-</div>
+

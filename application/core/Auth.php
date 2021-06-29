@@ -8,7 +8,7 @@ class Auth {
 
     }
     public function check() {
-        if(!empty($_SESSION)) {
+        if(!empty($_SESSION['fUser'])) {
             return true;
         }
         else {

@@ -26,6 +26,10 @@ class View {
             if(file_exists($this->contentViewPath)) {
                 include $this->templateViewPath;
             }
+            elseif (file_exists('application/views/'.$contentView)) {
+                $this->contentViewPath = 'application/views/'.$contentView;
+                include $this->templateViewPath;
+            }
         }
     }
 }

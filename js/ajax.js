@@ -1,6 +1,17 @@
 let mess = "<div> <p class='title-medium'>Обновление данных пользователя</p><p class='title-small'>Успешно выполнено!</p><p><a href='/user/'>Назад</a></p></div>";
 let form = document.querySelector('form');
 let invisibleElems = ["delete", "update-pass", "user-update-grid-container"];
+function recordingErrors (text) {
+    let request = document.querySelectorAll('.request');
+    for (let item of request) {
+        if (text.hasOwnProperty(item.id)) {
+            item.innerHTML = text[item.id];
+        } else {
+            item.innerHTML = "";
+        }
+    }
+
+}
 function actionsForms() {
     if (form != null) {
         if(form.attributes['data-type'].nodeValue == 'noRedirect') {
@@ -17,7 +28,6 @@ function actionsForms() {
         } else {
             document.location.href = '/user/';
         }
-
     }
 }
 function submitForm(actionsForms) {
@@ -33,28 +43,17 @@ function submitForm(actionsForms) {
                 }
             ).then(
                 text => {
-                    console.log(text)
-                    if(text == null) {
+                    if (text == null) {
                         actionsForms();
                     } else {
-                       let request = document.querySelectorAll('.request');
-                        for(let item of request) {
-                            if(text.hasOwnProperty(item.id)) {
-                                item.innerHTML = text[item.id];
-                            }
-                            else {
-                                item.innerHTML = "";
-                            }
-
-                        }
+                        recordingErrors(text);
                     }
-
                 }
             );
             event.preventDefault();
         });
     }
 }
-if(form != null && form.id != "auth"  ) {
+if(form != null) {
     submitForm(actionsForms);
 }

@@ -23,6 +23,7 @@ public $request;
         $limitFrom = ($page - 1)*static::$countToPage;
         if($limitFrom == 1) $limitFrom = 0;
         $limitTo = $page*static::$countToPage;
+        /*$limitTo = ($page*static::$countToPage) - 1;*/
         $Orm = Orm::Instance();
         $result = $Orm->Select(static::$table)->limit($limitFrom, $limitTo)->execute();
         foreach ($result as $user) {

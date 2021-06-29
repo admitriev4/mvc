@@ -2,6 +2,7 @@
 class Controller {
     public $model;
     public $view;
+    public $auth;
     public $viewPath;
 
     function __construct() {

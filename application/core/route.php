@@ -54,10 +54,10 @@ class Route {
              $controller->$actionName();
 
          }elseif (is_int($actionName)) {
-             if (method_exists($controller, 'getCountPage')) {
+             if (method_exists($controller->model, 'getCountPage')) {
                  $allpage = $controller->model->getCountPage();
                  if($actionName <= $allpage && method_exists($controller, "actionPaginate")) {
-                     $controller->actionPaginate($actionName, $allpage);
+                     $controller->actionPaginate($actionName);
                  }
                  else {
                      Route::ErrorPage404();

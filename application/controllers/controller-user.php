@@ -5,6 +5,7 @@ class controllerUser extends Controller
     function __construct()
     {
         $this->viewPath = "user/";
+        $this->auth = new Auth;
         $this->model = new modelUser();
         $this->view = new View($this->viewPath);
 
@@ -13,27 +14,30 @@ class controllerUser extends Controller
 
     function actionIndex()
     {
-        var_dump($_SESSION);
-        if (!empty($_POST) || !empty($_SESSION)) {
-            $user = $this->model->getData($_POST);
-            if (empty($user->request) || !empty($_SESSION['fUser'])) {
-                $data['users'] = $this->model->getPaginateList();
-                $data['count_page'] = $this->model->getCountPage();
-
+        if ($this->auth->check()) {
+            $data['users'] = $this->model->getPaginateList("1");
+            $data['count_page'] = $this->model->getCountPage();
                 $this->view->generate('user-view.php', $data);
-            } else {
-                /*echo json_encode($user->request,  JSON_UNESCAPED_UNICODE);*/
-                $this->view->generate('main-view.php', $user->request);
-            }
         } else {
             $this->view->generate('main-view.php');
         }
     }
+    function actionAuth()
+    {
+            $user = $this->model->getData($_POST);
+            if (empty($user->request) || $this->auth->check()) {
+                echo json_encode(null,  JSON_UNESCAPED_UNICODE);
+            } else {
+                echo json_encode($user->request,  JSON_UNESCAPED_UNICODE);
+            }
+
+    }
     function actionPaginate($page) {
-        if(!empty($_SESSION)) {
-            $data['users'] = $this->model->getPaginateList($page);
-            $data['count_page'] = $this->model->getCountPage();
-            $this->view->generate('user-view.php', $data);
+        if($this->auth->check()) {
+            $users = $this->model->getPaginateList($page);
+            /*var_dump($users);*/
+            echo json_encode($users,  JSON_UNESCAPED_UNICODE);
+
         } else {
             $this->view->generate('main-view.php');
         }
@@ -56,7 +60,7 @@ class controllerUser extends Controller
 
     function actionUpdate_show()
     {
-        if (!empty($_SESSION)) {
+        if ($this->auth->check()) {
             $this->view->generate('user-update-view.php');
         } else {
             $this->view->generate('main-view.php');
@@ -69,7 +73,6 @@ class controllerUser extends Controller
         if (!empty($_POST)) {
         $data = $this->model->updateUser($_POST);
             echo json_encode($data->request,  JSON_UNESCAPED_UNICODE);
-        /*$this->view->generate('user-update-view.php', $data);*/
         } else {
 
             $this->view->generate('main-view.php');
@@ -78,7 +81,7 @@ class controllerUser extends Controller
 
     function actionUpdate_show_pass()
     {
-        if (!empty($_SESSION)) {
+        if ($this->auth->check()) {
         $this->view->generate('user-update-pass-view.php');
         } else {
             $this->view->generate('main-view.php');
@@ -90,7 +93,6 @@ class controllerUser extends Controller
         if (!empty($_POST)) {
         $data = $this->model->updatePassUser($_POST);
         echo json_encode($data->request,  JSON_UNESCAPED_UNICODE);
-        /*$this->view->generate('user-update-pass-view.php', $data);*/
         } else {
             $this->view->generate('main-view.php');
         }
@@ -98,7 +100,7 @@ class controllerUser extends Controller
 
     function actionDelete_show()
     {
-        if (!empty($_SESSION)) {
+        if ($this->auth->check()) {
         $this->view->generate('user-delete-view.php', 'template.php');
         } else {
             $this->view->generate('main-view.php', 'template.php');

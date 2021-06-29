@@ -15,11 +15,13 @@
         <a href="/user/delete_show/">Удалить свой аккаунт</a>
         <a href="/">Выйти</a>
     </div>
+    <?if($data['count_page'] > 1):?>
     <div class="paginate">
         <?for ($i = 1; $i <= $data['count_page']; $i++):?>
             <a href="/user/<?=$i?>/"><?=$i?> </a>
         <?endfor;?>
     </div>
+    <?endif;?>
     <div class="user-list">
         <p class="user-top-list">
             <span>ID</span>
