@@ -9,17 +9,15 @@ class controllerUser extends Controller
         $this->model = new modelUser();
         $this->view = new View($this->viewPath);
 
-
     }
-
     function actionIndex()
     {
         if ($this->auth->check()) {
             $data['users'] = $this->model->getPaginateList("1");
             $data['count_page'] = $this->model->getCountPage();
-                $this->view->generate('user-view.php', $data);
+                $this->view->generate('user-view.php', 'Список пользователей', $data);
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php', 'Войдите или зарегисрируйтесь');
         }
     }
     function actionAuth()
@@ -38,13 +36,13 @@ class controllerUser extends Controller
             echo json_encode($users,  JSON_UNESCAPED_UNICODE);
 
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php', 'Войдите или зарегисрируйтесь');
         }
     }
 
     function actionAdd_show()
     {
-        $this->view->generate('user-add-view.php');
+        $this->view->generate('user-add-view.php', 'Регистрация пользователя');
     }
 
     function actionAdd()
@@ -53,16 +51,16 @@ class controllerUser extends Controller
             $user = $this->model->addUser($_POST);
                  echo json_encode($user->request,  JSON_UNESCAPED_UNICODE);
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php', 'Войдите или зарегисрируйтесь');
         }
     }
 
     function actionUpdate_show()
     {
         if ($this->auth->check()) {
-            $this->view->generate('user-update-view.php');
+            $this->view->generate('user-update-view.php','Обновление данных пользователя');
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php', 'Войдите или зарегисрируйтесь');
         }
 
     }
@@ -74,16 +72,16 @@ class controllerUser extends Controller
             echo json_encode($data->request,  JSON_UNESCAPED_UNICODE);
         } else {
 
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php', 'Войдите или зарегисрируйтесь');
         }
     }
 
     function actionUpdate_show_pass()
     {
         if ($this->auth->check()) {
-        $this->view->generate('user-update-pass-view.php');
+        $this->view->generate('user-update-pass-view.php','Обновление пароля пользователя');
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php','Войдите или зарегисрируйтесь');
         }
     }
 
@@ -93,16 +91,16 @@ class controllerUser extends Controller
         $data = $this->model->updatePassUser($_POST);
         echo json_encode($data->request,  JSON_UNESCAPED_UNICODE);
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php','Войдите или зарегисрируйтесь');
         }
     }
 
     function actionDelete_show()
     {
         if ($this->auth->check()) {
-        $this->view->generate('user-delete-view.php');
+        $this->view->generate('user-delete-view.php', "Удаление пользователя");
         } else {
-            $this->view->generate('main-view.php');
+            $this->view->generate('main-view.php', 'Войдите или зарегисрируйтесь');
         }
     }
 

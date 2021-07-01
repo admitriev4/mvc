@@ -7,6 +7,6 @@ class controllerMain extends  Controller {
             if ($auth->check()) {
                 $auth->logOut();
             }
-        $this->view->generate('main-view.php');
+        $this->view->generate('main-view.php','Войдите или зарегистрируйтесь');
     }
 }

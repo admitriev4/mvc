@@ -22,7 +22,7 @@ class View {
         }
     }
 
-    function generate($contentView, $data = null) {
+    function generate($contentView, $titleView = "", $data = null) {
         if(is_dir("application/views/".$this->viewsDir)) {
             $this->contentViewPath = 'application/views/'.$this->viewsDir.$contentView;
             if(file_exists($this->contentViewPath)) {

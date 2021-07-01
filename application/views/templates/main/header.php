@@ -3,7 +3,7 @@
      <link rel="stylesheet" type="text/css" href="/css/styles.css" />
      <link rel="stylesheet" type="text/css" href="/application/views/templates/main/css/template-styles.css" />
      <meta charset="utf-8">
-     <title>MVC, ООП, AJAX #Дмитриев</title>
+     <title><?=$titleView?></title>
  </head>
  <body>
  <div class="header">
