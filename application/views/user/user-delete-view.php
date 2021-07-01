@@ -4,7 +4,7 @@
             <p class="title-medium">Удаление данных пользователя</p>
             <p>Вы действительно хотите удалить данного пользователя?</p>
             <input type="submit" value="Удалить" class="btn">
-            <a href="/user/">Отмена</a>
+            <a href="/user/" class="btn">Отмена</a>
         </form>
     </div>
     <div class="message-request"></div>

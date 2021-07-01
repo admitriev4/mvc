@@ -1,7 +1,4 @@
-function recordingData(text) {
-    let dataFromPage = document.querySelectorAll('.user-bottom-list')
-
-
+function recordingData(text, dataFromPage) {
     if(text.length == dataFromPage.length) {
         for(let i=0; i<text.length; i++) {
             dataFromPage[i].innerHTML = formingString(text[i]);
@@ -9,7 +6,6 @@ function recordingData(text) {
                 dataFromPage[i].style.borderBottom = null
             }
         }
-
     } else if (text.length < dataFromPage.length) {
         for(let i=0; i<text.length; i++) {
             dataFromPage[i].innerHTML = formingString(text[i]);
@@ -27,7 +23,7 @@ function formingString(user) {
         "</span>";
     return userData;
 }
-function paginate(collectionPage) {
+function paginate(collectionPage, dataFromPage) {
     if (collectionPage.length != 0) {
         for(let elem of collectionPage) {
             elem.addEventListener('click', function (event) {
@@ -41,7 +37,7 @@ function paginate(collectionPage) {
                     }
                 ).then(
                     text => {
-                        recordingData(text)
+                        recordingData(text, dataFromPage)
                     }
                 );
                 event.preventDefault();
@@ -51,5 +47,6 @@ function paginate(collectionPage) {
 }
 
 let collectionPage = document.querySelectorAll('.paginate a');
-paginate(collectionPage);
+let dataFromPage = document.querySelectorAll('.user-bottom-list')
+paginate(collectionPage, dataFromPage);
 

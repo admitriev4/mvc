@@ -1,26 +1,4 @@
 <div class="user-grid-container">
-    <div class="your-date">
-        <p>Вы авторизировались как:</p>
-        <p>Имя: <?=$_SESSION['fUser']['name']?></p>
-        <p>Фамилия: <?=$_SESSION['fUser']['surname']?></p>
-        <p>E-mail: <?=$_SESSION['fUser']['email']?></p>
-        <p>Телефон: <?=$_SESSION['fUser']['phone']?></p>
-        <p>Адрес: <?=$_SESSION['fUser']['address']?></p>
-    </div>
-
-    <div class="actions-your-date">
-        <a href="/user/update_show/">Изменить информацию о себе</a>
-        <a href="/user/update_show_pass/">Изменить пароль</a>
-        <a href="/user/delete_show/">Удалить свой аккаунт</a>
-        <a href="/">Выйти</a>
-    </div>
-    <?if($data['count_page'] > 1):?>
-    <div class="paginate">
-        <?for ($i = 1; $i <= $data['count_page']; $i++):?>
-            <a href="/user/<?=$i?>/"><?=$i?> </a>
-        <?endfor;?>
-    </div>
-    <?endif;?>
     <div class="user-list">
         <p class="user-top-list">
             <span>ID</span>
@@ -41,5 +19,11 @@
         </p>
         <?endforeach;?>
     </div>
-
+    <?if($data['count_page'] > 1):?>
+        <div class="paginate">
+            <?for ($i = 1; $i <= $data['count_page']; $i++):?>
+                <a href="/user/<?=$i?>/" class="btn"><?=$i?> </a>
+            <?endfor;?>
+        </div>
+    <?endif;?>
 </div>

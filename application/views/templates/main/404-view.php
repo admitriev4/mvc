@@ -2,4 +2,4 @@
 <p class="img-404">
     <img src="/img/404.png">
 </p>
-<p class="center"><a href="/">Назад</a></p>
+<div class="center"><a href="/" class="btn">Назад</a></div>

@@ -1,4 +1,4 @@
-<div class="grid-container">
+<div class="main-grid-container">
     <div class="message">
         <p class="title-big">Войдите или Зарегистрируйтесь</p>
     </div>

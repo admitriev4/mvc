@@ -12,16 +12,20 @@
          </div>
          <div class="menu">
              <?if(!empty($_SESSION['fUser'])):?>
-                 <a href="/user/update_show/">Изменить информацию о себе</a>
-                 <a href="/user/update_show_pass/">Изменить пароль</a>
-                 <a href="/user/delete_show/">Удалить свой аккаунт</a>
+                 <a href="/user/update_show/" class="btn">Изменить свои данные</a>
+                 <a href="/user/update_show_pass/" class="btn">Изменить пароль</a>
+                 <a href="/user/delete_show/" class="btn">Удалить аккаунт</a>
 
              <?endif;?>
          </div>
          <div class="auth">
              <?if(!empty($_SESSION['fUser'])):?>
-                 <p><?=$_SESSION['fUser']['name']?> <?=$_SESSION['fUser']['phone']?></p>
-                <p><a href="/">Выйти</a></p>
+             <div>
+                 <p>Имя: <?=$_SESSION['fUser']['name']?></p>
+                 <p>Фамилия: <?=$_SESSION['fUser']['surname']?></p>
+                 <p>Телефон: <?=$_SESSION['fUser']['phone']?></p>
+                 </div>
+                <p><a href="/" class="btn">Выйти</a></p>
              <?endif;?>
          </div>
      </div>
