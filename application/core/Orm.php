@@ -104,8 +104,7 @@ class Orm {
         }else{
             $res_str = $from . ", " . $to;
         }
-        $this->sql_query .= " LIMIT " . $res_str; // Модифицируем строку запроса
-        /*var_dump($this);*/
+        $this->sql_query .= " LIMIT " . $res_str;
         return $this;
     }
 

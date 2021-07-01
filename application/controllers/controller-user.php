@@ -35,7 +35,6 @@ class controllerUser extends Controller
     function actionPaginate($page) {
         if($this->auth->check()) {
             $users = $this->model->getPaginateList($page);
-            /*var_dump($users);*/
             echo json_encode($users,  JSON_UNESCAPED_UNICODE);
 
         } else {
@@ -101,9 +100,9 @@ class controllerUser extends Controller
     function actionDelete_show()
     {
         if ($this->auth->check()) {
-        $this->view->generate('user-delete-view.php', 'template.php');
+        $this->view->generate('user-delete-view.php');
         } else {
-            $this->view->generate('main-view.php', 'template.php');
+            $this->view->generate('main-view.php');
         }
     }
 

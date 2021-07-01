@@ -7,7 +7,6 @@ class controllerMain extends  Controller {
             if ($auth->check()) {
                 $auth->logOut();
             }
-            var_dump($_SESSION);
         $this->view->generate('main-view.php');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 class View {
     public $viewsDir;
+    public $template;
     public $templateViewPath;
     public $contentViewPath;
     public $headerPath;
@@ -16,6 +17,7 @@ class View {
                 $this->templateViewPath = $templateViewPath;
                 $this->headerPath = $headerPath;
                 $this->footerPath = $footerPath;
+                $this->template = $template;
             }
         }
     }
@@ -26,9 +28,13 @@ class View {
             if(file_exists($this->contentViewPath)) {
                 include $this->templateViewPath;
             }
-            elseif (file_exists('application/views/'.$contentView)) {
-                $this->contentViewPath = 'application/views/'.$contentView;
+            elseif(file_exists('application/views/templates/'.$this->template."/".$contentView)) {
+                $this->contentViewPath = 'application/views/templates/'.$this->template."/".$contentView;
                 include $this->templateViewPath;
+            }
+            elseif (file_exists('application/views/'.$this->viewsDir.$contentView)) {
+            $this->contentViewPath = 'application/views/'.$this->viewsDir.$contentView;
+            include $this->templateViewPath;
             }
         }
     }

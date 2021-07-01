@@ -1,7 +1,6 @@
 <div class="user-grid-container">
     <div class="your-date">
         <p>Вы авторизировались как:</p>
-        <p>ID: <?=$_SESSION['fUser']['id']?></p>
         <p>Имя: <?=$_SESSION['fUser']['name']?></p>
         <p>Фамилия: <?=$_SESSION['fUser']['surname']?></p>
         <p>E-mail: <?=$_SESSION['fUser']['email']?></p>
